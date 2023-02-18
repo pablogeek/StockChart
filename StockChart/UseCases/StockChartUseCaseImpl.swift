@@ -16,14 +16,20 @@ class StockChartUseCaseImpl: StockChartUseCase {
         self.dataSource = dataSource
     }
     
-    func stockData(term: String) -> AnyPublisher<[StockData], StockDataSourceError> {
+    func stockData(
+        term: String,
+        timeFrame: TimeFrame
+    ) -> AnyPublisher<[StockData], StockDataSourceError> {
         guard !term.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
             return Fail(error: StockDataSourceError.searchTermEmpty).eraseToAnyPublisher()
         }
         return dataSource
             .search(term: term)
             .flatMap { [unowned self] searchData in
-                self.dataSource.stockData(identifier: searchData.symbol)
+                self.dataSource.stockData(
+                    identifier: searchData.symbol,
+                    timeFrame: timeFrame
+                )
             }
             .eraseToAnyPublisher()
     }

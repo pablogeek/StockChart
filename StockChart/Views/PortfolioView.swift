@@ -20,7 +20,7 @@ struct PortfolioView: View {
                     Text("Invested \(stock.totalInvested, specifier: "%.2f")")
                         .font(.subheadline)
                         .foregroundColor(.gray)
-                    Text("Quantity \(stock.quantity)")
+                    Text("Quantity \(stock.quantity, specifier: "%.2f")")
                         .font(.subheadline)
                         .foregroundColor(.gray)
                 }

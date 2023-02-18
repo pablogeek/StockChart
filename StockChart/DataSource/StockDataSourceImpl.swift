@@ -11,11 +11,17 @@ import Combine
 
 class StockDataSourceImpl: StockDataSource {
    
-    func stockData(identifier: String) -> Future<[StockData], StockDataSourceError> {
+    func stockData(
+        identifier: String,
+        timeFrame: TimeFrame
+    ) -> Future<[StockData], StockDataSourceError> {
         Future { future in
-            let startDate = Date().addingTimeInterval(-60 * 60 * 24 * 7) // 1 week ago
-            let endDate = Date()
-            SwiftYFinance.chartDataBy(identifier: identifier, start: startDate, end: endDate) { dataChart, error in
+            SwiftYFinance.chartDataBy(
+                identifier: identifier,
+                start: timeFrame.startDate,
+                end: timeFrame.endDate,
+                interval: timeFrame.interval
+            ) { dataChart, error in
                 if let error {
                     future(.failure(.fetchingError(error)))
                     return
@@ -34,7 +40,10 @@ class StockDataSourceImpl: StockDataSource {
     
     func search(term: String) -> Future<SearchData, StockDataSourceError> {
         Future { future in
-            SwiftYFinance.fetchSearchDataBy(searchTerm: term, quotesCount: 1) { result, error in
+            SwiftYFinance.fetchSearchDataBy(
+                searchTerm: term,
+                quotesCount: 1
+            ) { result, error in
                 if let error {
                     future(.failure(.fetchingError(error)))
                     return
@@ -48,6 +57,20 @@ class StockDataSourceImpl: StockDataSource {
                 let value = SearchData(symbol: symbol)
                 future(.success(value))
             }
+        }
+    }
+}
+
+
+fileprivate extension TimeFrame {
+    var interval: ChartTimeInterval {
+        switch self {
+        case .oneDay: return .thirtyminutes
+        case .oneWeek: return .onehour
+        case .oneMonth: return .ninetyminutes
+        case .threeMonths: return .oneday
+        case .oneYear: return .onemonths
+        case .fiveYears: return .onemonths
         }
     }
 }

@@ -16,6 +16,10 @@ enum StockDataSourceError: Error {
 }
 
 protocol StockDataSource {
-    func stockData(identifier: String) -> Future<[StockData], StockDataSourceError>
+    func stockData(
+        identifier: String,
+        timeFrame: TimeFrame
+    ) -> Future<[StockData], StockDataSourceError>
+    
     func search(term: String) -> Future<SearchData, StockDataSourceError>
 }

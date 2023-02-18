@@ -35,6 +35,7 @@
 		49F0E36B29A0E458005DFD8D /* PortfolioViewmodelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F0E36A29A0E458005DFD8D /* PortfolioViewmodelTests.swift */; };
 		49F0E36D29A0E613005DFD8D /* PortfolioUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F0E36C29A0E613005DFD8D /* PortfolioUseCase.swift */; };
 		49F0E36F29A0E640005DFD8D /* PortfolioUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F0E36E29A0E640005DFD8D /* PortfolioUseCaseImpl.swift */; };
+		49F0E37129A11A17005DFD8D /* TimeFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F0E37029A11A17005DFD8D /* TimeFrame.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		49F0E36A29A0E458005DFD8D /* PortfolioViewmodelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewmodelTests.swift; sourceTree = "<group>"; };
 		49F0E36C29A0E613005DFD8D /* PortfolioUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioUseCase.swift; sourceTree = "<group>"; };
 		49F0E36E29A0E640005DFD8D /* PortfolioUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioUseCaseImpl.swift; sourceTree = "<group>"; };
+		49F0E37029A11A17005DFD8D /* TimeFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFrame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +225,7 @@
 				49F0E35229A03898005DFD8D /* PortfolioStock.swift */,
 				49F0E35629A0394D005DFD8D /* StockData.swift */,
 				49F0E35F29A0C79B005DFD8D /* SearchData.swift */,
+				49F0E37029A11A17005DFD8D /* TimeFrame.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				49F0E34E29A03755005DFD8D /* StockDataSource.swift in Sources */,
 				49F0E36029A0C79B005DFD8D /* SearchData.swift in Sources */,
 				49F0E35729A0394D005DFD8D /* StockData.swift in Sources */,
+				49F0E37129A11A17005DFD8D /* TimeFrame.swift in Sources */,
 				49F0E35029A03789005DFD8D /* PortfolioDataSource.swift in Sources */,
 				49F0E36229A0DF23005DFD8D /* PortfolioDataSourceImpl.swift in Sources */,
 				49F0E36929A0E3AB005DFD8D /* PortfolioViewModel.swift in Sources */,

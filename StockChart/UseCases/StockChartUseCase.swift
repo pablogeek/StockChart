@@ -9,5 +9,8 @@ import Foundation
 import Combine
 
 protocol StockChartUseCase {
-    func stockData(term: String) -> AnyPublisher<[StockData], StockDataSourceError>
+    func stockData(
+        term: String,
+        timeFrame: TimeFrame
+    ) -> AnyPublisher<[StockData], StockDataSourceError>
 }

@@ -28,8 +28,22 @@ struct StockChartView: View {
             )
             .padding(.horizontal, 20)
             
-            
             LineView(data: viewModel.stockData)
+            
+            HStack(alignment: .top) {
+                ForEach(TimeFrame.allCases, id: \.rawValue) { timeFrame in
+                    Button(action: {
+                        self.viewModel.selectedTimeFrame = timeFrame
+                    }) {
+                        Text(timeFrame.displayName)
+                            .lineLimit(1)
+                            .padding(5)
+                            .foregroundColor(self.viewModel.selectedTimeFrame == timeFrame ? .white : .blue)
+                            .background(self.viewModel.selectedTimeFrame == timeFrame ? Color.blue : Color.clear)
+                            .cornerRadius(10)
+                    }
+                }
+            }
         }
         .padding()
     }

@@ -16,33 +16,63 @@ class StockChartViewModel: ObservableObject {
     
     private var subscriptions = Set<AnyCancellable>()
     
+    private var searchSubscriptionCancellable: AnyCancellable?
+    
     private let stockDataUseCase: StockChartUseCase
+    
+    @Published var selectedTimeFrame = TimeFrame.oneWeek
     
     init(stockDataUseCase: StockChartUseCase = StockChartUseCaseImpl(dataSource: StockDataSourceImpl())) {
         self.stockDataUseCase = stockDataUseCase
+        self.binding()
+    }
+    
+    private func binding() {
+        $selectedTimeFrame
+            .receive(on: DispatchQueue.global())
+            .sink { [weak self] timeFrame in
+                guard let self else { return }
+                self.search(text: self.searchText, timeFrame: timeFrame)
+            }
+            .store(in: &subscriptions)
         
         $searchText
             .debounce(for: .seconds(0.5), scheduler: DispatchQueue.global())
             .sink(receiveValue: { [weak self] t in
-                self?.search(text: t)
+                guard let self else { return }
+                self.search(text: t, timeFrame: self.selectedTimeFrame)
             } )
             .store(in: &subscriptions)
     }
     
-    private func search(text: String) {
-        stockDataUseCase.stockData(term: text)
-            .subscribe(on: DispatchQueue.global())
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] completion in
-                switch completion {
-                case .finished: break
-                case .failure:
-                    self?.stockData = []
-                }
-            } receiveValue: { [weak self] data in
-                self?.stockData = data
-                    .compactMap { $0.close }
-                    .compactMap { Double($0) }
-            }.store(in: &subscriptions)
+    private func search(
+        text: String,
+        timeFrame: TimeFrame
+    ) {
+        // This removes all the subscriptions and cancels them
+        searchSubscriptionCancellable?.cancel()
+        searchSubscriptionCancellable = nil
+        
+        searchSubscriptionCancellable =  stockDataUseCase.stockData(
+            term: text,
+            timeFrame: timeFrame
+        )
+        .subscribe(on: DispatchQueue.global())
+        .receive(on: DispatchQueue.main)
+        .tryMap {
+            $0.compactMap { $0.close }
+        }
+        .tryMap {
+            $0.map { Double($0) }
+        }
+        .sink { [weak self] completion in
+            switch completion {
+            case .finished: break
+            case .failure:
+                self?.stockData = []
+            }
+        } receiveValue: { [weak self] data in
+            self?.stockData = data
+        }
     }
 }
