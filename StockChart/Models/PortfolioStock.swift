@@ -13,4 +13,28 @@ struct PortfolioStock {
     let avgPrice: Double
     let quantity: Double
     let ltp: Double
+    
+    
+    var currentValue: Double {
+        quantity * ltp
+    }
+    
+    var totalInvested: Double {
+        quantity * avgPrice
+    }
+    
+    var pAndL: Double {
+        currentValue - totalInvested
+    }
+    
+    var pAndLPercent: Double {
+        (pAndL / totalInvested) * 100
+    }
+}
+
+
+extension Double {
+    func truncate(places : Int)-> Double {
+        return Double(floor(pow(10.0, Double(places)) * self)/pow(10.0, Double(places)))
+    }
 }

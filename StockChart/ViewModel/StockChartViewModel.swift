@@ -12,7 +12,6 @@ import Combine
 class StockChartViewModel: ObservableObject {
     @Published var stockData: [Double] = []
     
-    @Published var debouncedText = ""
     @Published var searchText = ""
     
     private var subscriptions = Set<AnyCancellable>()
@@ -23,25 +22,27 @@ class StockChartViewModel: ObservableObject {
         self.stockDataUseCase = stockDataUseCase
         
         $searchText
-            .debounce(for: .seconds(1), scheduler: DispatchQueue.main)
+            .debounce(for: .seconds(0.5), scheduler: DispatchQueue.global())
             .sink(receiveValue: { [weak self] t in
-                self?.debouncedText = t
                 self?.search(text: t)
             } )
             .store(in: &subscriptions)
     }
     
     private func search(text: String) {
-        // Make sure there is text
-        guard !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
-            return
-        }
-        stockDataUseCase.stockData(identifier: text).receive(on: DispatchQueue.main).sink { _ in
-            
-        } receiveValue: { [weak self] data in
-            self?.stockData = data
-                .compactMap { $0.close }
-                .compactMap { Double($0) }
-        }.store(in: &subscriptions)
+        stockDataUseCase.stockData(term: text)
+            .subscribe(on: DispatchQueue.global())
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                switch completion {
+                case .finished: break
+                case .failure:
+                    self?.stockData = []
+                }
+            } receiveValue: { [weak self] data in
+                self?.stockData = data
+                    .compactMap { $0.close }
+                    .compactMap { Double($0) }
+            }.store(in: &subscriptions)
     }
 }

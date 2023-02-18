@@ -8,8 +8,6 @@
 import Foundation
 import Combine
 
-
-/// Normally we would use this class to combine and transform different api calls, in this case its just like a bridge
 class StockChartUseCaseImpl: StockChartUseCase {
     
     private let dataSource: StockDataSource
@@ -18,7 +16,15 @@ class StockChartUseCaseImpl: StockChartUseCase {
         self.dataSource = dataSource
     }
     
-    func stockData(identifier: String) -> Future<[StockData], StockDataSourceError> {
-        dataSource.stockData(identifier: identifier)
+    func stockData(term: String) -> AnyPublisher<[StockData], StockDataSourceError> {
+        guard !term.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+            return Fail(error: StockDataSourceError.searchTermEmpty).eraseToAnyPublisher()
+        }
+        return dataSource
+            .search(term: term)
+            .flatMap { [unowned self] searchData in
+                self.dataSource.stockData(identifier: searchData.symbol)
+            }
+            .eraseToAnyPublisher()
     }
 }

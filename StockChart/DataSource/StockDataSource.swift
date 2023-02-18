@@ -12,8 +12,10 @@ enum StockDataSourceError: Error {
     case fetchingError(Error)
     case parseError
     case dataNull
+    case searchTermEmpty
 }
 
 protocol StockDataSource {
     func stockData(identifier: String) -> Future<[StockData], StockDataSourceError>
+    func search(term: String) -> Future<SearchData, StockDataSourceError>
 }

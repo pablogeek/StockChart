@@ -7,22 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A3B037EC-5769-48E0-A5E6-E20956906857"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "StockChart/ViewModel/StockChartViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "init(stockDataUseCase:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "04EA62C8-6AF6-445C-85B4-0D2F98AA8E25"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -30,8 +14,8 @@
             filePath = "StockChart/DataSource/StockDataSourceImpl.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
             landmarkName = "stockData(identifier:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +30,8 @@
             filePath = "StockChart/DataSource/StockDataSourceImpl.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
             landmarkName = "stockData(identifier:)"
             landmarkType = "7">
             <Locations>
@@ -87,16 +71,96 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0E242B30-3FA6-4882-BF7B-798860169ED2"
-            shouldBeEnabled = "No"
+            uuid = "9D6A8E96-EBA8-4D50-BB12-AE99142B9472"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "StockChart/UseCases/StockChartUseCaseImpl.swift"
+            filePath = "StockChart/DataSource/PortfolioDataSourceImpl.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
-            landmarkName = "stockData(identifier:)"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "portfolioData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9D6A8E96-EBA8-4D50-BB12-AE99142B9472 - 851d453179cfe506"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 ((Swift.Result&lt;Swift.Array&lt;StockChart.PortfolioStock&gt;, StockChart.PortfolioAPIError&gt;) -&gt; ()) -&gt; () in StockChart.PortfolioDataSourceImpl.portfolioData() -&gt; Combine.Future&lt;Swift.Array&lt;StockChart.PortfolioStock&gt;, StockChart.PortfolioAPIError&gt;"
+                  moduleName = "StockChart"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pablomartinezpiles/Documents/iOSApps/StockChart/StockChart/DataSource/PortfolioDataSourceImpl.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "615">
+               </Location>
+               <Location
+                  uuid = "9D6A8E96-EBA8-4D50-BB12-AE99142B9472 - 851d453179cfe506"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 ((Swift.Result&lt;Swift.Array&lt;StockChart.PortfolioStock&gt;, StockChart.PortfolioAPIError&gt;) -&gt; ()) -&gt; () in StockChart.PortfolioDataSourceImpl.portfolioData() -&gt; Combine.Future&lt;Swift.Array&lt;StockChart.PortfolioStock&gt;, StockChart.PortfolioAPIError&gt;"
+                  moduleName = "StockChart"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pablomartinezpiles/Documents/iOSApps/StockChart/StockChart/DataSource/PortfolioDataSourceImpl.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "1207">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "57A66927-770F-41FB-B323-F4429AE6281E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StockChart/DataSource/PortfolioDataSourceImpl.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "portfolioData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C79593A4-4A55-48C4-886E-703A864EC19C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StockChart/DataSource/PortfolioDataSourceImpl.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "portfolioData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4EAB9DDC-BC96-468B-9AC4-69D435490709"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StockChart/DataSource/PortfolioDataSourceImpl.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "portfolioData()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

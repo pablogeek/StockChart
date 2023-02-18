@@ -6,7 +6,13 @@
 //
 
 import Foundation
+import Combine
+
+enum PortfolioAPIError: Error {
+    case wrongUrl
+    case requestError(Error)
+}
 
 protocol PortfolioDataSource {
-    func portfolioData() -> [PortfolioStock]
+    func portfolioData() -> Future<[PortfolioStock], PortfolioAPIError>
 }

@@ -27,6 +27,14 @@
 		49F0E35929A03B74005DFD8D /* StockChartUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F0E35829A03B74005DFD8D /* StockChartUseCase.swift */; };
 		49F0E35B29A03BFA005DFD8D /* StockChartUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F0E35A29A03BFA005DFD8D /* StockChartUseCaseImpl.swift */; };
 		49F0E35E29A03CA7005DFD8D /* StockChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F0E35D29A03CA7005DFD8D /* StockChartViewModel.swift */; };
+		49F0E36029A0C79B005DFD8D /* SearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F0E35F29A0C79B005DFD8D /* SearchData.swift */; };
+		49F0E36229A0DF23005DFD8D /* PortfolioDataSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F0E36129A0DF23005DFD8D /* PortfolioDataSourceImpl.swift */; };
+		49F0E36429A0E304005DFD8D /* StockChartViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F0E36329A0E304005DFD8D /* StockChartViewModelTests.swift */; };
+		49F0E36729A0E32A005DFD8D /* PortfolioDataSourceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F0E36629A0E32A005DFD8D /* PortfolioDataSourceMock.swift */; };
+		49F0E36929A0E3AB005DFD8D /* PortfolioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F0E36829A0E3AB005DFD8D /* PortfolioViewModel.swift */; };
+		49F0E36B29A0E458005DFD8D /* PortfolioViewmodelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F0E36A29A0E458005DFD8D /* PortfolioViewmodelTests.swift */; };
+		49F0E36D29A0E613005DFD8D /* PortfolioUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F0E36C29A0E613005DFD8D /* PortfolioUseCase.swift */; };
+		49F0E36F29A0E640005DFD8D /* PortfolioUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F0E36E29A0E640005DFD8D /* PortfolioUseCaseImpl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +76,14 @@
 		49F0E35829A03B74005DFD8D /* StockChartUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockChartUseCase.swift; sourceTree = "<group>"; };
 		49F0E35A29A03BFA005DFD8D /* StockChartUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockChartUseCaseImpl.swift; sourceTree = "<group>"; };
 		49F0E35D29A03CA7005DFD8D /* StockChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockChartViewModel.swift; sourceTree = "<group>"; };
+		49F0E35F29A0C79B005DFD8D /* SearchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchData.swift; sourceTree = "<group>"; };
+		49F0E36129A0DF23005DFD8D /* PortfolioDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioDataSourceImpl.swift; sourceTree = "<group>"; };
+		49F0E36329A0E304005DFD8D /* StockChartViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockChartViewModelTests.swift; sourceTree = "<group>"; };
+		49F0E36629A0E32A005DFD8D /* PortfolioDataSourceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioDataSourceMock.swift; sourceTree = "<group>"; };
+		49F0E36829A0E3AB005DFD8D /* PortfolioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewModel.swift; sourceTree = "<group>"; };
+		49F0E36A29A0E458005DFD8D /* PortfolioViewmodelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewmodelTests.swift; sourceTree = "<group>"; };
+		49F0E36C29A0E613005DFD8D /* PortfolioUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioUseCase.swift; sourceTree = "<group>"; };
+		49F0E36E29A0E640005DFD8D /* PortfolioUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioUseCaseImpl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,7 +159,10 @@
 		49F0E32329A02EC8005DFD8D /* StockChartTests */ = {
 			isa = PBXGroup;
 			children = (
+				49F0E36529A0E319005DFD8D /* Mock */,
 				49F0E32429A02EC8005DFD8D /* StockChartTests.swift */,
+				49F0E36329A0E304005DFD8D /* StockChartViewModelTests.swift */,
+				49F0E36A29A0E458005DFD8D /* PortfolioViewmodelTests.swift */,
 			);
 			path = StockChartTests;
 			sourceTree = "<group>";
@@ -171,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				49F0E34F29A03789005DFD8D /* PortfolioDataSource.swift */,
+				49F0E36129A0DF23005DFD8D /* PortfolioDataSourceImpl.swift */,
 				49F0E34D29A03755005DFD8D /* StockDataSource.swift */,
 				49F0E35429A038EE005DFD8D /* StockDataSourceImpl.swift */,
 				49F0E34329A031CB005DFD8D /* Entities */,
@@ -183,6 +203,8 @@
 			children = (
 				49F0E35829A03B74005DFD8D /* StockChartUseCase.swift */,
 				49F0E35A29A03BFA005DFD8D /* StockChartUseCaseImpl.swift */,
+				49F0E36C29A0E613005DFD8D /* PortfolioUseCase.swift */,
+				49F0E36E29A0E640005DFD8D /* PortfolioUseCaseImpl.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -200,6 +222,7 @@
 			children = (
 				49F0E35229A03898005DFD8D /* PortfolioStock.swift */,
 				49F0E35629A0394D005DFD8D /* StockData.swift */,
+				49F0E35F29A0C79B005DFD8D /* SearchData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -208,8 +231,17 @@
 			isa = PBXGroup;
 			children = (
 				49F0E35D29A03CA7005DFD8D /* StockChartViewModel.swift */,
+				49F0E36829A0E3AB005DFD8D /* PortfolioViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		49F0E36529A0E319005DFD8D /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				49F0E36629A0E32A005DFD8D /* PortfolioDataSourceMock.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -350,7 +382,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49F0E36F29A0E640005DFD8D /* PortfolioUseCaseImpl.swift in Sources */,
 				49F0E34729A03477005DFD8D /* PortfolioView.swift in Sources */,
+				49F0E36D29A0E613005DFD8D /* PortfolioUseCase.swift in Sources */,
 				49F0E35329A03898005DFD8D /* PortfolioStock.swift in Sources */,
 				49F0E35929A03B74005DFD8D /* StockChartUseCase.swift in Sources */,
 				49F0E31629A02EC5005DFD8D /* StockChartView.swift in Sources */,
@@ -359,8 +393,11 @@
 				49F0E34529A03276005DFD8D /* ContentView.swift in Sources */,
 				49F0E35529A038EE005DFD8D /* StockDataSourceImpl.swift in Sources */,
 				49F0E34E29A03755005DFD8D /* StockDataSource.swift in Sources */,
+				49F0E36029A0C79B005DFD8D /* SearchData.swift in Sources */,
 				49F0E35729A0394D005DFD8D /* StockData.swift in Sources */,
 				49F0E35029A03789005DFD8D /* PortfolioDataSource.swift in Sources */,
+				49F0E36229A0DF23005DFD8D /* PortfolioDataSourceImpl.swift in Sources */,
+				49F0E36929A0E3AB005DFD8D /* PortfolioViewModel.swift in Sources */,
 				49F0E35B29A03BFA005DFD8D /* StockChartUseCaseImpl.swift in Sources */,
 				49F0E35E29A03CA7005DFD8D /* StockChartViewModel.swift in Sources */,
 			);
@@ -370,6 +407,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49F0E36429A0E304005DFD8D /* StockChartViewModelTests.swift in Sources */,
+				49F0E36B29A0E458005DFD8D /* PortfolioViewmodelTests.swift in Sources */,
+				49F0E36729A0E32A005DFD8D /* PortfolioDataSourceMock.swift in Sources */,
 				49F0E32529A02EC8005DFD8D /* StockChartTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
