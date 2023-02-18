@@ -27,6 +27,7 @@ class StockChartViewModel: ObservableObject {
         self.binding()
     }
     
+    /// Bind selectedTimeFrame and searchText
     private func binding() {
         $selectedTimeFrame
             .receive(on: DispatchQueue.global())
@@ -49,7 +50,7 @@ class StockChartViewModel: ObservableObject {
         text: String,
         timeFrame: TimeFrame
     ) {
-        // This removes all the subscriptions and cancels them
+        // This cancels the current search if any
         searchSubscriptionCancellable?.cancel()
         searchSubscriptionCancellable = nil
         
