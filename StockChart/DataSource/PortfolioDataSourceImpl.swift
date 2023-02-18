@@ -15,12 +15,12 @@ class PortfolioDataSourceImpl: PortfolioDataSource {
     private var subscriptions = Set<AnyCancellable>()
     
     private enum Endpoints: String {
-        case a = "/v3/2b63ba43-6440-4780-aa13-91e6d8247305"
+        case portfolio = "/v3/2b63ba43-6440-4780-aa13-91e6d8247305"
     }
     
     func portfolioData() -> Future<[PortfolioStock], PortfolioAPIError> {
         Future { future in
-            guard let url = URL(string: "\(self.host)\(Endpoints.a.rawValue)") else {
+            guard let url = URL(string: "\(self.host)\(Endpoints.portfolio.rawValue)") else {
                 future(.failure(.wrongUrl))
                 return
             }

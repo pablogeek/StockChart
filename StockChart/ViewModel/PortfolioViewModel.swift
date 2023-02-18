@@ -18,6 +18,8 @@ class PortfolioViewModel: ObservableObject {
     
     @Published var pAndLOverall: Double = 0.0
     @Published var pAndLPercentOverall: Double = 0.0
+    @Published var pAndLOverallToday: Double = 0.0
+    @Published var pAndLPercentOverallToday: Double = 0.0
     
     init(portfolioUseCase: PortfolioUseCase = PortfolioUseCaseImpl(dataSource: PortfolioDataSourceImpl())) {
         self.portfolioUseCase = portfolioUseCase
@@ -39,6 +41,10 @@ class PortfolioViewModel: ObservableObject {
             
             self?.pAndLOverall = pLOverall
             self?.pAndLPercentOverall = (pLOverall / totalInvested) * 100
+            
+            let pAndLToday = portfolioData.map { $0.pAndL }.reduce(0, +)
+            self?.pAndLOverallToday = pAndLToday
+            self?.pAndLPercentOverallToday = (pAndLToday / totalInvested) * 100
             
             // Set portfolio stocks list
             self?.portfolioStocks = portfolioData

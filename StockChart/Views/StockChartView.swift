@@ -29,6 +29,7 @@ struct StockChartView: View {
             .padding(.horizontal, 20)
             
             LineView(data: viewModel.stockData)
+                .frame(maxHeight: 300)
             
             HStack(alignment: .top) {
                 ForEach(TimeFrame.allCases, id: \.rawValue) { timeFrame in
@@ -44,6 +45,7 @@ struct StockChartView: View {
                     }
                 }
             }
+            Spacer()
         }
         .padding()
     }

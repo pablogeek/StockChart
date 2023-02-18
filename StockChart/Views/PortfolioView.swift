@@ -15,7 +15,9 @@ struct PortfolioView: View {
         List {
             PortfolioOverallView(
                 pAndLTotal: $viewModel.pAndLOverall,
-                pAndLTotalPercent: $viewModel.pAndLPercentOverall
+                pAndLTotalPercent: $viewModel.pAndLPercentOverall,
+                pAndLToday: $viewModel.pAndLOverallToday,
+                pAndLPercentToday: $viewModel.pAndLPercentOverallToday
             )
             
             ForEach(viewModel.portfolioStocks, id: \.symbol) { stock in
@@ -52,23 +54,23 @@ struct PortfolioOverallView: View {
     
     @Binding var pAndLTotal: Double
     @Binding var pAndLTotalPercent: Double
+    @Binding var pAndLToday: Double
+    @Binding var pAndLPercentToday: Double
     
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
                 Text("Total performance \(pAndLTotal, specifier: "%.2f")")
                     .font(.headline)
-                    .foregroundColor(.gray)
-                Text("Invested \(pAndLTotalPercent, specifier: "%.2f") %")
+                Text("*Till last day \(pAndLTotalPercent, specifier: "%.2f") %")
                     .font(.subheadline)
                     .foregroundColor(.gray)
             }
             Spacer()
             VStack(alignment: .trailing) {
-                Text("\(pAndLTotal, specifier: "%.2f")")
+                Text("\(pAndLToday, specifier: "%.2f")")
                     .font(.headline)
-                    .foregroundColor(.gray)
-                Text("\(pAndLTotalPercent, specifier: "%.2f") Avg")
+                Text("\(pAndLPercentToday, specifier: "%.2f") %")
                     .font(.subheadline)
                     .foregroundColor(.gray)
             }

@@ -65,9 +65,9 @@ class StockDataSourceImpl: StockDataSource {
 fileprivate extension TimeFrame {
     var interval: ChartTimeInterval {
         switch self {
-        case .oneDay: return .thirtyminutes
-        case .oneWeek: return .onehour
-        case .oneMonth: return .ninetyminutes
+        case .oneDay: return .onehour
+        case .oneWeek: return .oneday
+        case .oneMonth: return .oneday
         case .threeMonths: return .oneday
         case .oneYear: return .onemonths
         case .fiveYears: return .onemonths
