@@ -14,7 +14,7 @@ class StockDataSourceImpl: StockDataSource {
     func stockData(
         identifier: String,
         timeFrame: TimeFrame
-    ) -> Future<[StockData], StockDataSourceError> {
+    ) -> Future<[StockData.Value], StockDataSourceError> {
         Future { future in
             SwiftYFinance.chartDataBy(
                 identifier: identifier,
@@ -32,7 +32,7 @@ class StockDataSourceImpl: StockDataSource {
                     return
                 }
                 
-                let data = dataChart.map { StockData(date: $0.date, volume: $0.volume, open: $0.open, close: $0.close, adjclose: $0.adjclose, low: $0.low, high: $0.high) }
+                let data = dataChart.map { StockData.Value(date: $0.date, volume: $0.volume, open: $0.open, close: $0.close, adjclose: $0.adjclose, low: $0.low, high: $0.high) }
                 future(.success(data))
             }
         }
@@ -49,12 +49,14 @@ class StockDataSourceImpl: StockDataSource {
                     return
                 }
                 
-                guard let symbol = result?.first?.symbol else {
+                guard let symbol = result?.first?.symbol,
+                        let name = result?.first?.shortname
+                else {
                     future(.failure(.dataNull))
                     return
                 }
                 
-                let value = SearchData(symbol: symbol)
+                let value = SearchData(symbol: symbol, name: name)
                 future(.success(value))
             }
         }
@@ -65,7 +67,7 @@ class StockDataSourceImpl: StockDataSource {
 fileprivate extension TimeFrame {
     var interval: ChartTimeInterval {
         switch self {
-        case .oneDay: return .onehour
+        case .oneDay: return .thirtyminutes
         case .oneWeek: return .oneday
         case .oneMonth: return .oneday
         case .threeMonths: return .oneday

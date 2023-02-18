@@ -7,8 +7,15 @@
 
 import XCTest
 @testable import StockChart
+import Combine
 
-class StockChartViewModelTests: XCTest {
+class StockChartViewModelTests: XCTestCase {
+    
+    var subscriptions = Set<AnyCancellable>()
+    
+    override func tearDown() {
+        subscriptions = []
+    }
     
     
     

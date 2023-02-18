@@ -9,4 +9,5 @@ import Foundation
 
 struct SearchData {
     let symbol: String
+    let name: String
 }

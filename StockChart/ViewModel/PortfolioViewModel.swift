@@ -16,10 +16,12 @@ class PortfolioViewModel: ObservableObject {
     
     private let portfolioUseCase: PortfolioUseCase
     
-    @Published var pAndLOverall: Double = 0.0
-    @Published var pAndLPercentOverall: Double = 0.0
-    @Published var pAndLOverallToday: Double = 0.0
-    @Published var pAndLPercentOverallToday: Double = 0.0
+    @Published var overallModel = OverallViewModel(
+        pAndLOverall: 0,
+        pAndLPercentOverall: 0,
+        pAndLOverallToday: 0,
+        pAndLPercentOverallToday: 0
+    )
     
     init(portfolioUseCase: PortfolioUseCase = PortfolioUseCaseImpl(dataSource: PortfolioDataSourceImpl())) {
         self.portfolioUseCase = portfolioUseCase
@@ -35,19 +37,26 @@ class PortfolioViewModel: ObservableObject {
             }
         } receiveValue: { [weak self] portfolioData in
             // Calculate overall
-            let totalInvested = portfolioData.map { $0.totalInvested }.reduce(0, +)
+            let totalInvested = portfolioData.totalInvested
+            let pLOverall = portfolioData.pLOverall
+            let pAndLToday = portfolioData.pAndLToday
             
-            let pLOverall = portfolioData.map { $0.currentValue }.reduce(0, +) - totalInvested
-            
-            self?.pAndLOverall = pLOverall
-            self?.pAndLPercentOverall = (pLOverall / totalInvested) * 100
-            
-            let pAndLToday = portfolioData.map { $0.pAndL }.reduce(0, +)
-            self?.pAndLOverallToday = pAndLToday
-            self?.pAndLPercentOverallToday = (pAndLToday / totalInvested) * 100
+            self?.overallModel = OverallViewModel(
+                pAndLOverall: pLOverall,
+                pAndLPercentOverall: (pLOverall / totalInvested) * 100,
+                pAndLOverallToday: pAndLToday,
+                pAndLPercentOverallToday: (pAndLToday / totalInvested) * 100
+            )
             
             // Set portfolio stocks list
             self?.portfolioStocks = portfolioData
         }.store(in: &subscriptions)
+    }
+    
+    struct OverallViewModel {
+        let pAndLOverall: Double
+        let pAndLPercentOverall: Double
+        let pAndLOverallToday: Double
+        let pAndLPercentOverallToday: Double
     }
 }

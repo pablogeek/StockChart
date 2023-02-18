@@ -8,11 +8,16 @@
 import Foundation
 
 struct StockData {
-    let date: Date?
-    let volume: Int?
-    let open: Float?
-    let close: Float?
-    let adjclose: Float?
-    let low: Float?
-    let high: Float?
+    let data: [Value]
+    let name: String
+    
+    struct Value {
+        let date: Date?
+        let volume: Int?
+        let open: Float?
+        let close: Float?
+        let adjclose: Float?
+        let low: Float?
+        let high: Float?
+    }
 }

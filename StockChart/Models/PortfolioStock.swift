@@ -32,9 +32,9 @@ struct PortfolioStock {
     }
 }
 
-
-extension Double {
-    func truncate(places : Int)-> Double {
-        return Double(floor(pow(10.0, Double(places)) * self)/pow(10.0, Double(places)))
-    }
+/// Some overall calculations
+extension [PortfolioStock] {
+    var totalInvested: Double { map { $0.totalInvested }.reduce(0, +) }
+    var pLOverall: Double { map { $0.currentValue }.reduce(0, +) - totalInvested }
+    var pAndLToday: Double { map { $0.pAndL }.reduce(0, +) }
 }

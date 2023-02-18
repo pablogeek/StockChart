@@ -19,7 +19,7 @@ class StockChartUseCaseImpl: StockChartUseCase {
     func stockData(
         term: String,
         timeFrame: TimeFrame
-    ) -> AnyPublisher<[StockData], StockDataSourceError> {
+    ) -> AnyPublisher<StockData, StockDataSourceError> {
         guard !term.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
             return Fail(error: StockDataSourceError.searchTermEmpty).eraseToAnyPublisher()
         }
@@ -29,7 +29,9 @@ class StockChartUseCaseImpl: StockChartUseCase {
                 self.dataSource.stockData(
                     identifier: searchData.symbol,
                     timeFrame: timeFrame
-                )
+                ).map {
+                    StockData(data: $0, name: searchData.name)
+                }
             }
             .eraseToAnyPublisher()
     }

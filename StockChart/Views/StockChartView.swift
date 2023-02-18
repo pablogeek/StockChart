@@ -15,7 +15,7 @@ struct StockChartView: View {
     @State var customText = ""
     
     var body: some View {
-        VStack {
+        VStack (alignment: .leading) {
             TextField(
                 "Enter Something",
                 text: $viewModel.searchText
@@ -28,9 +28,18 @@ struct StockChartView: View {
             )
             .padding(.horizontal, 20)
             
+            // Stock info
+            StockHeaderInfo(
+                stockName: $viewModel.stockName,
+                currentPrice: $viewModel.stockData.last ?? .constant(0)
+            )
+            .font(.title)
+            
+            // Stock Chart
             LineView(data: viewModel.stockData)
                 .frame(maxHeight: 300)
             
+            // Time frame buttons
             HStack(alignment: .top) {
                 ForEach(TimeFrame.allCases, id: \.rawValue) { timeFrame in
                     Button(action: {
@@ -48,6 +57,19 @@ struct StockChartView: View {
             Spacer()
         }
         .padding()
+    }
+}
+
+struct StockHeaderInfo: View {
+
+    @Binding var stockName: String?
+    @Binding var currentPrice: Double
+    
+    var body: some View {
+        VStack (alignment: .leading) {
+            Text(stockName ?? "---")
+            Text("$\(currentPrice, specifier: "%.2f")")
+        }
     }
 }
 

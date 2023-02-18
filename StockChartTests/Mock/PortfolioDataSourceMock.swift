@@ -10,10 +10,11 @@ import Foundation
 import Combine
 
 class PortfolioDataSourceMock: PortfolioDataSource {
-    var stocks: [PortfolioStock] = []
+    
+    var portfolioDataResult: Result<[StockChart.PortfolioStock], StockChart.PortfolioAPIError> = .success([])
     func portfolioData() -> Future<[StockChart.PortfolioStock], StockChart.PortfolioAPIError> {
         Future { future in
-            future(.success(self.stocks))
+            future(self.portfolioDataResult)
         }
     }
 }

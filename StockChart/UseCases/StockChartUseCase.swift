@@ -12,5 +12,5 @@ protocol StockChartUseCase {
     func stockData(
         term: String,
         timeFrame: TimeFrame
-    ) -> AnyPublisher<[StockData], StockDataSourceError>
+    ) -> AnyPublisher<StockData, StockDataSourceError>
 }

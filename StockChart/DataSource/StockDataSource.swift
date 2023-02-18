@@ -19,7 +19,7 @@ protocol StockDataSource {
     func stockData(
         identifier: String,
         timeFrame: TimeFrame
-    ) -> Future<[StockData], StockDataSourceError>
+    ) -> Future<[StockData.Value], StockDataSourceError>
     
     func search(term: String) -> Future<SearchData, StockDataSourceError>
 }

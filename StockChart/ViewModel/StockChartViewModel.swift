@@ -11,6 +11,7 @@ import Combine
 
 class StockChartViewModel: ObservableObject {
     @Published var stockData: [Double] = []
+    @Published var stockName: String?
     
     @Published var searchText = ""
     
@@ -60,20 +61,22 @@ class StockChartViewModel: ObservableObject {
         )
         .subscribe(on: DispatchQueue.global())
         .receive(on: DispatchQueue.main)
-        .tryMap {
+        /*.tryMap {
             $0.compactMap { $0.close }
         }
         .tryMap {
             $0.map { Double($0) }
-        }
+        }*/
         .sink { [weak self] completion in
             switch completion {
             case .finished: break
             case .failure:
                 self?.stockData = []
+                self?.stockName = nil
             }
-        } receiveValue: { [weak self] data in
-            self?.stockData = data
+        } receiveValue: { [weak self] stockData in
+            self?.stockData = stockData.data.compactMap { $0.close }.compactMap { Double($0) }
+            self?.stockName = stockData.name
         }
     }
 }
