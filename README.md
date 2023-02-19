@@ -1,6 +1,7 @@
 # StockChart
 Example of Stock Charts using SwiftUICharts and SwiftYFinance
 
+https://user-images.githubusercontent.com/1773546/219950350-069e6b3b-ecb5-422e-aed7-2c00db089dfb.mp4
 
 ## Architecture
 
