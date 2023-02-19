@@ -50,7 +50,6 @@ struct PortfolioView: View {
         }
         .background(Color.primary)
         .listStyle(.plain)
-        
     }
 }
 
@@ -80,9 +79,9 @@ struct PortfolioItemView: View {
         .foregroundColor(.white)
         .padding(
             EdgeInsets(
-                top: 25,
+                top: 15,
                 leading: 5,
-                bottom: 25,
+                bottom: 15,
                 trailing: 5
             )
         )

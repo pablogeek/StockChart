@@ -23,7 +23,9 @@ class StockChartViewModel: ObservableObject {
     
     @Published var selectedTimeFrame = TimeFrame.oneWeek
     
-    init(stockDataUseCase: StockChartUseCase = StockChartUseCaseImpl(dataSource: StockDataSourceImpl())) {
+    init(
+        stockDataUseCase: StockChartUseCase = StockChartUseCaseImpl(dataSource: StockDataSourceImpl())
+    ) {
         self.stockDataUseCase = stockDataUseCase
         self.binding()
     }
@@ -31,6 +33,7 @@ class StockChartViewModel: ObservableObject {
     /// Bind selectedTimeFrame and searchText
     private func binding() {
         $selectedTimeFrame
+            .dropFirst()
             .receive(on: DispatchQueue.global())
             .sink { [weak self] timeFrame in
                 guard let self else { return }
@@ -39,6 +42,7 @@ class StockChartViewModel: ObservableObject {
             .store(in: &subscriptions)
         
         $searchText
+            .dropFirst()
             .debounce(for: .seconds(0.5), scheduler: DispatchQueue.global())
             .sink(receiveValue: { [weak self] t in
                 guard let self else { return }
@@ -55,18 +59,12 @@ class StockChartViewModel: ObservableObject {
         searchSubscriptionCancellable?.cancel()
         searchSubscriptionCancellable = nil
         
-        searchSubscriptionCancellable =  stockDataUseCase.stockData(
+        searchSubscriptionCancellable = stockDataUseCase.stockData(
             term: text,
             timeFrame: timeFrame
         )
         .subscribe(on: DispatchQueue.global())
         .receive(on: DispatchQueue.main)
-        /*.tryMap {
-            $0.compactMap { $0.close }
-        }
-        .tryMap {
-            $0.map { Double($0) }
-        }*/
         .sink { [weak self] completion in
             switch completion {
             case .finished: break
@@ -75,7 +73,9 @@ class StockChartViewModel: ObservableObject {
                 self?.stockName = nil
             }
         } receiveValue: { [weak self] stockData in
-            self?.stockData = stockData.data.compactMap { $0.close }.compactMap { Double($0) }
+            self?.stockData = stockData.data
+                .compactMap { $0.close }
+                .compactMap { Double($0) }
             self?.stockName = stockData.name
         }
     }

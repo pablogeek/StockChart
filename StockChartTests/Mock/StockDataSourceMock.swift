@@ -10,22 +10,23 @@ import Foundation
 import Combine
 
 class StockDataSourceMock: StockDataSource {
-    
-    var stockDataResult: Result<[StockChart.StockData], StockChart.StockDataSourceError> = .failure(.dataNull)
-    func stockData(identifier: String, timeFrame: StockChart.TimeFrame) -> Future<[StockChart.StockData], StockChart.StockDataSourceError> {
+    var stockDataResult: Result<[StockChart.StockData.Value], StockChart.StockDataSourceError>
+    = .failure(.dataNull)
+    func stockData(identifier: String, timeFrame: StockChart.TimeFrame) -> Future<[StockChart.StockData.Value], StockChart.StockDataSourceError> {
         Future { future in
             future(self.stockDataResult)
         }
     }
     
     private(set) var searchCalled: Bool = false
+    private(set) var searchCount: Int = 0
+    var searchDataResult: Result<StockChart.SearchData, StockChart.StockDataSourceError>
+    = .success(StockChart.SearchData(symbol: "", name: ""))
     func search(term: String) -> Future<StockChart.SearchData, StockChart.StockDataSourceError> {
         searchCalled = true
+        searchCount += 1
         return Future { future in
-            future(.success(StockChart.SearchData(symbol: "")))
+            future(self.searchDataResult)
         }
-        
     }
-    
-    
 }
